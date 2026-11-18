@@ -1,0 +1,25 @@
+# PostgreSQL cho môi trường dev.
+# Chạy:  docker compose up -d     |  Tắt:  docker compose down
+# Xóa sạch dữ liệu (làm lại từ đầu):  docker compose down -v
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: rentwear-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: rentwear
+      POSTGRES_USER: rentwear
+      POSTGRES_PASSWORD: rentwear
+      TZ: Asia/Ho_Chi_Minh
+    ports:
+      - "5432:5432"
+    volumes:
+      - rentwear-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rentwear -d rentwear"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  rentwear-data:
