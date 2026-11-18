@@ -1,0 +1,5 @@
+# Chỉ dùng khi chạy profile dev (mặc định trên máy). Ghi đè cấu hình trong application.yml.
+spring:
+  flyway:
+    # Chạy thêm dữ liệu mẫu trong db/seed
+    locations: classpath:db/migration,classpath:db/seed
