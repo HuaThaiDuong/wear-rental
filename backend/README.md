@@ -47,9 +47,17 @@ src/main/resources/
 
 ## Quy tắc database (Flyway)
 
-- Bảng **chỉ** được tạo/sửa bằng file SQL trong `db/migration`, đặt tên `V<số>__<mô_tả>.sql`
-  (2 dấu gạch dưới), vd `V1__init.sql`, `V2__seed.sql`, `V3__add_users.sql`.
-- **Không sửa file đã merge vào main.** Cần đổi bảng thì tạo file mới với số tiếp theo.
+Tên file: `V<số>__<mô_tả>.sql` (2 dấu gạch dưới). File SQL nằm ở 2 thư mục:
+
+| Thư mục | Chứa gì | Chạy ở đâu |
+|---|---|---|
+| `db/migration` | Chỉ `CREATE`/`ALTER` bảng, vd `V1__init.sql`, `V3__add_users.sql` | Mọi môi trường |
+| `db/seed` | Chỉ `INSERT` dữ liệu demo, vd `V2__seed_home.sql`, `V<số>__seed_<tên>.sql` | Chỉ profile `dev` |
+
+- Máy dev mặc định chạy profile `dev` (có seed). Khi deploy đặt `SPRING_PROFILES_ACTIVE=prod` thì Flyway bỏ qua `db/seed`.
+- **Số version dùng chung cho cả 2 thư mục, không được trùng.** Vd V1 ở migration, V2 ở seed thì bảng mới tiếp theo phải là V3.
+  Trước khi tạo file mới, xem số lớn nhất ở **cả 2 thư mục** rồi cộng 1.
+- **Không sửa file đã merge vào main.** Cần đổi bảng hoặc dữ liệu thì tạo file mới với số tiếp theo.
 - Hibernate để `ddl-auto: validate`: Entity viết lệch so với bảng thì app báo lỗi ngay khi chạy.
 - Database trên máy bị rối thì làm lại từ đầu: `docker compose down -v` rồi `docker compose up -d`.
 
