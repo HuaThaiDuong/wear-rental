@@ -68,40 +68,8 @@
 
     <!-- ===== Danh mục ===== -->
     <section aria-label="Danh mục trang phục">
-      <div class="grid-4 cats">
-        <a class="cat" href="category.html?slug=vay-cuoi">
-          <span class="cat__icon"><svg width="26" height="26"><use href="#i-hanger"/></svg></span>
-          <div><h3>Váy cưới</h3><p>Đuôi cá · Xòe công chúa · Váy đi bàn</p></div>
-        </a>
-        <a class="cat" href="category.html?slug=vest">
-          <span class="cat__icon"><svg width="26" height="26"><use href="#i-hanger"/></svg></span>
-          <div><h3>Vest &amp; suit</h3><p>Vest cưới · Công sở · Tuxedo</p></div>
-        </a>
-        <a class="cat" href="category.html?slug=ao-dai">
-          <span class="cat__icon"><svg width="26" height="26"><use href="#i-hanger"/></svg></span>
-          <div><h3>Áo dài</h3><p>Truyền thống · Cách tân · Áo dài cưới</p></div>
-        </a>
-        <a class="cat" href="category.html?slug=da-hoi">
-          <span class="cat__icon"><svg width="26" height="26"><use href="#i-hanger"/></svg></span>
-          <div><h3>Dạ hội</h3><p>Đầm dài · Kim sa · Cocktail</p></div>
-        </a>
-        <a class="cat" href="category.html?slug=cosplay">
-          <span class="cat__icon"><svg width="26" height="26"><use href="#i-hanger"/></svg></span>
-          <div><h3>Cosplay</h3><p>Anime · Halloween · Cổ trang</p></div>
-        </a>
-        <a class="cat" href="category.html?slug=tre-em">
-          <span class="cat__icon"><svg width="26" height="26"><use href="#i-hanger"/></svg></span>
-          <div><h3>Trẻ em</h3><p>Váy công chúa · Vest bé trai · Biểu diễn</p></div>
-        </a>
-        <a class="cat" href="category.html?slug=phu-kien">
-          <span class="cat__icon"><svg width="26" height="26"><use href="#i-hanger"/></svg></span>
-          <div><h3>Phụ kiện</h3><p>Giày · Túi xách · Trang sức</p></div>
-        </a>
-        <a class="cat" href="category.html?slug=combo">
-          <span class="cat__icon"><svg width="26" height="26"><use href="#i-hanger"/></svg></span>
-          <div><h3>Combo</h3><p>Combo cưới · Chụp ảnh · Nhóm bạn</p></div>
-        </a>
-      </div>
+      <div class="grid-4 cats" id="categoryList"></div>
+      <p class="status-text" id="categoryStatus">Đang tải danh mục...</p>
     </section>
 
     <!-- ===== Bộ sưu tập / ưu đãi ===== -->
@@ -162,6 +130,7 @@
     </div>
   </footer>
 
+  <script src="js/api.js"></script>
   <script src="js/data.js"></script>
   <script src="js/home.js"></script>
 </body>

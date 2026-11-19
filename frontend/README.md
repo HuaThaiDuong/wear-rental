@@ -15,6 +15,7 @@ npx serve .            # hoặc: python -m http.server 5500
 index.html          trang chủ
 css/base.css        dùng chung mọi trang: màu, header, footer
 css/home.css        chỉ cho trang chủ
+js/api.js           địa chỉ backend + hàm gọi API dùng chung
 js/data.js          dữ liệu mẫu sản phẩm (sau này thay bằng API)
 js/home.js          hiển thị sản phẩm, xử lý ô chọn ngày và form tìm kiếm
 assets/images/      chỗ để ảnh sản phẩm
