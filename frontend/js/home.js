@@ -59,8 +59,51 @@ function setupDateInputs() {
   });
 }
 
+// ===== Render "Danh mục" từ API =====
+async function loadCategories() {
+  const container = document.getElementById("categoryList");
+  const status = document.getElementById("categoryStatus");
+
+  try {
+    const categories = await apiGet("/categories");
+
+    // Nếu mảng rỗng thì thông báo chưa có
+    if (!categories || categories.length === 0) {
+      status.textContent = "Chưa có danh mục nào.";
+      status.style.display = "";
+      return;
+    }
+
+    // Có dữ liệu: render danh sách danh mục
+    container.innerHTML = categories
+      .map((cat) => {
+        const icon = cat.iconUrl
+          ? `<img src="${escapeHTML(cat.iconUrl)}" alt="" width="26" height="26">`
+          : `<svg width="26" height="26"><use href="#i-hanger"/></svg>`;
+        const desc = cat.description
+          ? `<p>${escapeHTML(cat.description)}</p>`
+          : "";
+
+        return `
+          <a class="cat" href="category.html?slug=${encodeURIComponent(cat.slug)}">
+            <span class="cat__icon">${icon}</span>
+            <div><h3>${escapeHTML(cat.name)}</h3>${desc}</div>
+          </a>`;
+      })
+      .join("");
+
+    // Ẩn dòng thông báo trạng thái
+    status.style.display = "none";
+  } catch (err) {
+    status.textContent = "Không tải được danh mục. Vui lòng thử lại sau.";
+    status.style.display = "";
+    console.error(err);
+  }
+}
+
 // ===== Khởi động =====
 document.addEventListener("DOMContentLoaded", () => {
+  loadCategories();
   renderProducts(POPULAR_PRODUCTS);
   setupDateInputs();
 });
