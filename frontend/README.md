@@ -1,38 +1,35 @@
-# RentWear – Frontend (HTML/CSS/JS thuần)
+# RentWear frontend
 
-Không cần cài đặt hay build gì. Mở `index.html` bằng trình duyệt là xem được,
-hoặc chạy server tĩnh (khuyên dùng, giống môi trường thật hơn):
+React 18 + Vite interface for the clothing rental management project.
+
+## Run locally
 
 ```bash
 cd frontend
-npx serve .            # hoặc: python -m http.server 5500
-# hoặc dùng extension "Live Server" trong VS Code
+npm install
+npm run dev
 ```
 
-## Cấu trúc
+Set `VITE_API_BASE_URL` to the backend API root when it differs from
+`http://localhost:8080/api` (see `.env.example`). The category filter loads
+`GET /api/categories` when the backend is available and falls back to sample
+categories when it is offline.
 
-```
-index.html          trang chủ
-css/base.css        dùng chung mọi trang: màu, header, footer
-css/home.css        chỉ cho trang chủ
-js/api.js           địa chỉ backend + hàm gọi API dùng chung
-js/data.js          dữ liệu mẫu sản phẩm (sau này thay bằng API)
-js/home.js          hiển thị sản phẩm, xử lý ô chọn ngày và form tìm kiếm
-assets/images/      chỗ để ảnh sản phẩm
-assets/favicon.svg  icon hiển thị trên tab trình duyệt
-```
+## Current screens
 
-## Quy ước
+- Customer catalog with search, category, size, occasion, price and rental-date filters.
+- Item details, rental date selection, sample QR payment state and order history.
+- Demo login/registration and editable customer profile.
+- Staff order processing, item condition controls, and add/edit inventory form.
+- Admin overview, demo role assignment, and category management controls.
 
-- Trang mới: tạo `ten-trang.html`, link `css/base.css` + file CSS riêng của trang đó.
-  Copy khối `<header>` và `<footer>` từ `index.html` (có comment đánh dấu).
-- Class đặt theo kiểu BEM: `khoi__phan-tu--bien-the` (vd `promo--dark`, `product__body`).
-- Màu dùng biến trong `base.css` (`var(--green-700)`...), không viết mã màu trực tiếp.
+## Demo limits / backend work still needed
 
-## Việc còn lại (TODO)
-
-- Nối API thật thay cho `js/data.js` (giữ nguyên tên field).
-- Tạo các trang đang được link tới: `login.html`, `cart.html`, `search.html`,
-  `category.html`, `product.html`, `products.html`, `about.html`, `policy.html`...
-- Dropdown "Chọn cửa hàng".
-- Điền `[X]%`, địa chỉ, số điện thoại, email thật; thêm ảnh sản phẩm vào `assets/images/`.
+Product, order and user data currently live in React state and reset on refresh.
+The login form only switches demo roles; it does not authenticate users or secure
+routes. The QR panel is a visual placeholder and does not initiate a payment.
+The late fee uses a simple demo rate of 50,000 VND per overdue day. Real date
+availability, deposit settlement, damage charges, role permissions, analytics,
+and customer profile updates require corresponding backend APIs and validation.
+The current backend exposes health, stores and categories; it does not yet expose
+products, authentication, rentals or payments.

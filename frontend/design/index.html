@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RentWear · Cho thuê trang phục cưới, dạ hội, áo dài, cosplay</title>
+  <meta name="description" content="Cho thuê trang phục cưới, dạ hội, áo dài và cosplay. Giặt sạch trước mỗi lần thuê.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+  <!-- Icon móc treo dùng lại nhiều lần: <svg><use href="#i-hanger"/></svg> -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-hanger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 6.5a2 2 0 1 1 2.8 1.84c-.48.2-.8.67-.8 1.2V10.5"/>
+      <path d="M12 10.5 3.4 16.6a1 1 0 0 0 .58 1.82h16.04a1 1 0 0 0 .58-1.82L12 10.5Z"/>
+    </symbol>
+  </svg>
+
+  <!-- ================= HEADER (copy sang các trang khác) ================= -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="RentWear - trang chủ">rent<b>wear</b></a>
+      <div class="header__actions">
+        <!-- TODO: mở danh sách cửa hàng khi có API -->
+        <button type="button" class="btn-ghost" aria-haspopup="listbox">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <span class="header__store-label">Chọn cửa hàng</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <a href="cart.html" class="btn-ghost btn-ghost--icon" aria-label="Giỏ hàng">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M2.5 3.5h2.6l2.4 11.2a1.6 1.6 0 0 0 1.6 1.3h8.6a1.6 1.6 0 0 0 1.6-1.2L21 7.5H6.1"/></svg>
+        </a>
+        <a href="login.html" class="btn-white">Đăng nhập</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container home">
+
+    <!-- ===== Hero + tìm kiếm ===== -->
+    <section>
+      <h1 class="home__title">Hôm nay bạn cần mặc gì?</h1>
+      <form class="search" id="searchForm" action="search.html" method="get" role="search">
+        <div class="search__field search__field--wide">
+          <label for="q">Trang phục</label>
+          <input id="q" name="q" type="text" placeholder="Váy cưới, vest, áo dài..." autocomplete="off">
+        </div>
+        <div class="search__field">
+          <label for="from">Ngày nhận</label>
+          <input id="from" name="from" type="text" placeholder="Thêm ngày" data-date>
+        </div>
+        <div class="search__field">
+          <label for="to">Ngày trả</label>
+          <input id="to" name="to" type="text" placeholder="Thêm ngày" data-date>
+        </div>
+        <button type="submit" class="btn-primary">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Tìm đồ
+        </button>
+      </form>
+    </section>
+
+    <!-- ===== Danh mục ===== -->
+    <section aria-label="Danh mục trang phục">
+      <div class="grid-4 cats" id="categoryList"></div>
+      <p class="status-text" id="categoryStatus">Đang tải danh mục...</p>
+    </section>
+
+    <!-- ===== Bộ sưu tập / ưu đãi ===== -->
+    <section aria-label="Bộ sưu tập và ưu đãi">
+      <div class="grid-4">
+        <a class="promo promo--dark" href="collection.html?slug=mua-cuoi-2026">
+          <span class="promo__tag">Bộ sưu tập</span><h3>Mùa cưới<br>2026</h3>
+        </a>
+        <a class="promo promo--yellow" href="collection.html?slug=ao-dai-tet">
+          <span class="promo__tag">Đặt sớm giữ size</span><h3>Áo dài Tết</h3>
+        </a>
+        <a class="promo promo--mint" href="promotion.html?slug=khach-moi">
+          <span class="promo__tag">Khách mới</span><h3>Thuê lần đầu<br>giảm [X]%</h3>
+        </a>
+        <a class="promo promo--white" href="delivery.html">
+          <span class="promo__tag">Tiện lợi</span><h3>Giao &amp; nhận<br>đồ tận nơi</h3>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== Đang được thuê nhiều (render bằng js/home.js) ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Đang được thuê nhiều</h2>
+        <a class="pill" href="products.html?sort=popular">Xem tất cả
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m9 6 6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="grid-4 products" id="popularProducts"></div>
+    </section>
+
+    <!-- ===== Quy trình thuê ===== -->
+    <section class="steps" aria-label="Quy trình thuê đồ">
+      <div class="step"><span class="step__num">1</span><div><h3>Chọn trang phục</h3><p>Lọc theo dịp, size, giá; xem video thử đồ.</p></div></div>
+      <div class="step"><span class="step__num">2</span><div><h3>Chọn ngày &amp; đặt cọc</h3><p>Chọn ngày trên lịch, cọc bằng QR hoặc ví.</p></div></div>
+      <div class="step"><span class="step__num">3</span><div><h3>Nhận &amp; trả đồ</h3><p>Trả đúng hẹn để được hoàn cọc.</p></div></div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER (copy sang các trang khác) ================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="index.html" class="logo">rent<b>wear</b></a>
+          <p class="footer__desc">Cho thuê trang phục cưới, dạ hội, áo dài và cosplay. Giặt sạch trước mỗi lần thuê.</p>
+        </div>
+        <nav class="footer__links">
+          <a href="about.html">Giới thiệu</a>
+          <a href="policy.html" class="is-solid">Chính sách thuê &amp; cọc</a>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 RentWear · Đồ án Group Project – USTH</span>
+        <!-- TODO: điền thông tin liên hệ thật -->
+        <span>[Địa chỉ] · [Số điện thoại] · [Email]</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
